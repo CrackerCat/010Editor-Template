@@ -3,14 +3,15 @@
 //
 //      File: 
 //   Authors: Ovie
+//    Github: https://github.com/Ovi3/010Editor-Template
 //   Version: 
 //   Purpose: Parse Java Object Serialization Stream
+// Reference: https://docs.oracle.com/javase/8/docs/platform/serialization/spec/protocol.html
 //  Category: Programming
 // File Mask: *.ser
 //  ID Bytes: AC ED
 //   History:
 //------------------------------------------------
-
 
 
 
@@ -199,7 +200,7 @@ string primTypecodeRead(char &prim_typecode) {
 struct PrimitiveDesc {
     char prim_typecode <read=primTypecodeRead>;
     ushort fieldNameLength;
-    char fieldName[fieldNameLength] <open=suppress>;
+    char fieldName[fieldNameLength] <open=suppress, bgcolor=0xa67395>;
 };
 
 string objTypecodeRead(char &obj_typecode) {
@@ -239,7 +240,7 @@ struct ClassName1 { // string object or a reference pointed to a string object
 struct ObjectDesc {
     char obj_typecode <read=objTypecodeRead>;
     ushort fieldNameLength;
-    char fieldName[fieldNameLength] <open=suppress>;
+    char fieldName[fieldNameLength] <open=suppress, bgcolor=0xa67395>;
     ClassName1 className1;
 };
 
@@ -347,8 +348,8 @@ struct NewClassDesc {
     TC tc;
     if (tc == TC_CLASSDESC) {
         ushort classNameLength;
-        char className[classNameLength] <open=suppress>;
-        int64 serialVersionUID;
+        char className[classNameLength] <open=suppress, bgcolor=0x2e63cb>;
+        int64 serialVersionUID <bgcolor=0x5a6d6e>;
         newHandle(startof(this));
         ClassDescInfo classDescInfo;
     } else if (tc == TC_PROXYCLASSDESC){
@@ -368,8 +369,8 @@ struct LocalClassDesc {
             TC tc;
             if (tc == TC_CLASSDESC) {
                 ushort classNameLength;
-                char className[classNameLength] <open=suppress>;
-                int64 serialVersionUID;
+                char className[classNameLength] <open=suppress, bgcolor=0x2e63cb>;
+                int64 serialVersionUID <bgcolor=0x5a6d6e>;
                 ClassDescInfo classDescInfo;
             } else if (tc == TC_PROXYCLASSDESC){
                 ProxyClassDescInfo proxyClassDescInfo;
